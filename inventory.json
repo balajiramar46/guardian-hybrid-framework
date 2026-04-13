@@ -1,0 +1,28 @@
+{
+  "ui": {
+    "googleUrl": "https://www.google.com"
+  },
+  "api": {
+    "baseUrl": "https://reqres.in"
+  },
+  "tests": [
+    {
+      "name": "Smoke Test 1",
+      "type": "smoke",
+      "ui": "googleUrl",
+      "api": "/users/2"
+    },
+    {
+      "name": "Smoke Test 2",
+      "type": "smoke",
+      "ui": "googleUrl",
+      "api": "/users/3"
+    },
+    {
+      "name": "Smoke Test 3",
+      "type": "smoke",
+      "ui": "googleUrl",
+      "api": "/users/4"
+    }
+  ]
+}
