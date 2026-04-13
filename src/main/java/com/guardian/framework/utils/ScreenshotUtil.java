@@ -12,21 +12,24 @@ import java.nio.file.Paths;
 
 public class ScreenshotUtil {
 
-    public static String capture(String testName) {
+	public static String capture(String testName) {
+	    try {
+	        WebDriver driver = DriverFactory.getDriver();
 
-        try {
-            WebDriver driver = DriverFactory.getDriver();
+	        // Ensure folder exists
+	        Files.createDirectories(Paths.get("screenshots"));
 
-            File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+	        File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 
-            String path = "screenshots/" + testName + ".png";
-            Files.createDirectories(Paths.get("screenshots"));
-            Files.copy(src.toPath(), Paths.get(path));
+	        String path = System.getProperty("user.dir") + "/screenshots/" + testName + ".png";
 
-            return path;
+	        Files.copy(src.toPath(), Paths.get(path));
 
-        } catch (Exception e) {
-            return null;
-        }
-    }
+	        return path;
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return null;
+	    }
+	}
 }

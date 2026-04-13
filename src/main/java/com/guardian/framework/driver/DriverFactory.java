@@ -2,7 +2,7 @@ package com.guardian.framework.driver;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
+import org.openqa.selenium.chrome.ChromeOptions;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DriverFactory {
@@ -12,8 +12,15 @@ public class DriverFactory {
     public static WebDriver getDriver() {
 
         if (driver.get() == null) {
+
             WebDriverManager.chromedriver().setup();
-            driver.set(new ChromeDriver());
+
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--headless=new");
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
+
+            driver.set(new ChromeDriver(options));
         }
 
         return driver.get();
